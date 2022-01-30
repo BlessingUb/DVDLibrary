@@ -19,37 +19,41 @@ public class DvdLibraryController {
         int menuSelection = 0;
         while (keepGoing) {
             io.print("Main Menu");
-            io.print("1. List Student IDs");
-            io.print("2. Create New Student");
-            io.print("3. View a Student");
-            io.print("4. Remove a Student");
-            io.print("5. Exit");
+            io.print("1. List all DVD");
+            io.print("2. Create New DVD");
+            io.print("3. Remove a DVD");
+            io.print("4. Edit a DVD");
+            io.print("5. Display DVD info");
+            io.print("6. Exit");
 
             menuSelection = io.readInt("Please select from the"
-                    + " above choices.", 1, 5);
+                    + " above choices.", 1, 6);
 
             switch (menuSelection) {
                 case 1:
-                    io.print("LIST STUDENTS");
+                    io.print("LIST ALL DVDs");
                     break;
                 case 2:
-                    io.print("CREATE STUDENT");
+                    io.print("CREATE DVD");
                     break;
                 case 3:
-                    io.print("VIEW STUDENT");
+                    io.print("REMOVE DVD");
                     break;
                 case 4:
-                    io.print("REMOVE STUDENT");
+                    io.print("EDIT DVD");
                     break;
                 case 5:
+                    io.print("DISPLAY DVD INFO");
+                    break;
+                case 6:
                     keepGoing = false;
                     break;
                 default:
-                    io.print("UNKNOWN COMMAND");
+                    io.print("INVALID COMMAND!!!");
             }
 
         }
-        io.print("GOOD BYE");
+        io.print("BYE FOR NOW!!");
     }
     
 }
