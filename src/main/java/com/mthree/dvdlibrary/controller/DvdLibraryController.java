@@ -17,9 +17,24 @@ import java.util.List;
  * @author blessingubogu
  */
 public class DvdLibraryController {
-    private DvdLibraryView view = new DvdLibraryView();
-    private UserIO io = new UserIOConsoleImpl();
-    private DvdLibraryDao dao = new DvdLibraryDaoFileImpl();
+//    private DvdLibraryView view = new DvdLibraryView();
+//    private UserIO io = new UserIOConsoleImpl();
+//    private DvdLibraryDao dao = new DvdLibraryDaoFileImpl();
+    
+/* a constructor in the controller that has a DvdLibraryDao
+    parameter and a DvdLibraryView parameter and uses the 
+    incoming values to initialize the DvdLibraryDao 
+    and DvdLibraryView member fields
+    
+    */
+    
+    private DvdLibraryView view;
+    private DvdLibraryDao dao;
+    
+    public DvdLibraryController(DvdLibraryDao dao, DvdLibraryView view) {
+        this.dao = dao;
+        this.view = view;
+    }
 
     public void run() {
         boolean keepGoing = true;
@@ -37,21 +52,18 @@ public class DvdLibraryController {
                 case 3:
                     deleteDvd();
                     break;
-                case 4:
-                    io.print("EDIT DVD");
-                    break;
                 case 5:
-                    io.print("DISPLAY DVD INFO");
+                    viewDvdInfo();
                     break;
                 case 6:
                     keepGoing = false;
                     break;
                 default:
-                    io.print("INVALID COMMAND!!!");
+                    invalidCommand();
             }
 
         }
-        io.print("BYE FOR NOW!!");
+        exitMessage();
     }
     private int getMenuSelection(){
         return view.printMenuAndGetSelection();
@@ -77,5 +89,23 @@ public class DvdLibraryController {
         Dvd deletedDvd = dao.deleteDvd(title);
         view.displayDeleteResult(deletedDvd);
     }
+    
+    
+    //private method asks the view to display the View Dvd banner and get 
+    //the title from the user
+    private void viewDvdInfo() {
+        view.displayDisplayDvdBanner();
+        String title = view.getTitleChoice();
+        Dvd dvd = dao.getDvd(title);
+        view.displayDvd(dvd);
+    }
+    
+    // private methods for the view to display the right message to the user
+    private void invalidCommand() {
+        view.displayInvalidCommandBanner();
+    }
 
+    private void exitMessage() {
+        view.displayExitBanner();
+    }
 }

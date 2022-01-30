@@ -31,7 +31,7 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
 
     @Override
     public Dvd getDvd(String title) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return dvds.get(title);
     }
 
     @Override
@@ -40,4 +40,11 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
         return deletedDvd;
     }
     
+    // able to edit an exisiting dvd
+//    @Override
+//    public Dvd editDvd(String title) {
+//        Dvd editedDvd = dvds.put(title);
+//        return editedDvd;
+//    }
+//    
 }

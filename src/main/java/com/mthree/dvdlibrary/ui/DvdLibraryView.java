@@ -12,7 +12,12 @@ import java.util.List;
  * @author blessingubogu
  */
 public class DvdLibraryView {
-    private UserIO io = new UserIOConsoleImpl();
+    private UserIO io;
+    
+    // implement a constructor that initializes the io member field.
+    public DvdLibraryView(UserIO io) {
+        this.io = io;
+    }
     
     public int printMenuAndGetSelection(){
         io.print("Main Menu");
@@ -72,6 +77,21 @@ public class DvdLibraryView {
         io.readString("Hit enter to continue.");
     }
     
+    // displays a dvd's information to the user
+    public void displayDvd(Dvd dvd) {
+        if (dvd != null) {
+            io.print(dvd.getTitle());
+            io.print(dvd.getReleaseDate());
+            io.print(dvd.getMpaaRating());
+            io.print(dvd.getDirectorName());
+            io.print(dvd.getStudio());
+            io.print(dvd.getUserRating());
+            io.print("");
+        } else {
+            io.print("No such dvd is found.");
+        }
+        io.readString("Hit enter to continue.");
+    }
     
     // display banner for new dvd
     public void displayCreateDvdBanner() {
@@ -94,10 +114,23 @@ public class DvdLibraryView {
     public void displayDeleteDvdBanner () {
     io.print("=== Remove Dvd ===");
 }
-
+// ask the user for dvd title they wish to display
     public String getTitleChoice() {
         return io.readString("Enter the dvd title:");
     }
-}
+    
+    // display the dvd banner
+    public void displayDisplayDvdBanner () {
+        io.print("=== Display Dvd info ===");
+    } 
+    
+    // new method to display exit 
+    public void displayExitBanner() {
+        io.print("Bye for now!!!");
+    }
 
+    public void displayInvalidCommandBanner() {
+        io.print("Invalid Command!!!");
+    }
+}
 
