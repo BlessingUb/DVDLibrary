@@ -4,6 +4,7 @@
  */
 package com.mthree.dvdlibrary.controller;
 
+import com.mthree.dvdlibrary.ui.DvdLibraryView;
 import com.mthree.dvdlibrary.ui.UserIO;
 import com.mthree.dvdlibrary.ui.UserIOConsoleImpl;
 
@@ -12,23 +13,15 @@ import com.mthree.dvdlibrary.ui.UserIOConsoleImpl;
  * @author blessingubogu
  */
 public class DvdLibraryController {
+    private DvdLibraryView view = new DvdLibraryView();
     private UserIO io = new UserIOConsoleImpl();
 
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
         while (keepGoing) {
-            io.print("Main Menu");
-            io.print("1. List all DVD");
-            io.print("2. Create New DVD");
-            io.print("3. Remove a DVD");
-            io.print("4. Edit a DVD");
-            io.print("5. Display DVD info");
-            io.print("6. Exit");
-
-            menuSelection = io.readInt("Please select from the"
-                    + " above choices.", 1, 6);
-
+            menuSelection = getMenuSelection();
+            
             switch (menuSelection) {
                 case 1:
                     io.print("LIST ALL DVDs");
@@ -55,5 +48,7 @@ public class DvdLibraryController {
         }
         io.print("BYE FOR NOW!!");
     }
-    
+    private int getMenuSelection(){
+        return view.printMenuAndGetSelection();
+    }
 }
