@@ -45,13 +45,13 @@ public interface DvdLibraryDao {
     Dvd getDvd(String title);
 
     /**
-     * Removes from the Library the dvd associated with the given id.
-     * Returns the dvd object that is being removed or null if
+     * Deletes from the Library the dvd associated with the given id.
+     * Returns the dvd object that is being deleted or null if
      * there is no dvd associated with the given id
      *
-     * @param title title of dvd to be removed
-     * @return Dvd object that was removed or null if no dvd
+     * @param title title of dvd to be deleted
+     * @return Dvd object that was deleted or null if no dvd
      * was associated with the given dvd title
      */
-    Dvd removeDvd(String title);
+    Dvd deleteDvd(String title);
 }

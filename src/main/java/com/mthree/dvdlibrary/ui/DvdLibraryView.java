@@ -59,6 +59,19 @@ public class DvdLibraryView {
         }
         io.readString("Hit enter to continue.");
     }
+
+    // ability to delete unwanted dvd from the library
+    public void displayDeleteResult(Dvd dvdRecord) {
+        if(dvdRecord != null){
+          io.print("Dvd successfully deleted.");
+        }
+        else
+        {
+          io.print("No such dvd found.");
+        }
+        io.readString("Hit enter to continue.");
+    }
+    
     
     // display banner for new dvd
     public void displayCreateDvdBanner() {
@@ -75,4 +88,16 @@ public class DvdLibraryView {
     public void displayDisplayAllDvdBanner() {
         io.print("=== Display All DVDs ===");
     }
+    
+   
+    // display message for deleting exosting dvd
+    public void displayDeleteDvdBanner () {
+    io.print("=== Remove Dvd ===");
 }
+
+    public String getTitleChoice() {
+        return io.readString("Enter the dvd title:");
+    }
+}
+
+

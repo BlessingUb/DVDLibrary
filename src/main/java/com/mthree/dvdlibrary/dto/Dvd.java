@@ -16,6 +16,7 @@ public class Dvd {
     private String directorName;
     private String studio;
     private String userRating;
+    
 // title will be read-only as it will be passed as parameter to the constructor
  // therefore no setter for the field   
     public Dvd(String title) {

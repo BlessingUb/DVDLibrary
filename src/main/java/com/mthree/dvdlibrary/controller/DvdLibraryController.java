@@ -35,7 +35,7 @@ public class DvdLibraryController {
                     createDvd();
                     break;
                 case 3:
-                    io.print("REMOVE DVD");
+                    deleteDvd();
                     break;
                 case 4:
                     io.print("EDIT DVD");
@@ -68,6 +68,14 @@ public class DvdLibraryController {
         view.displayDisplayAllDvdBanner();
         List<Dvd> dvdList = dao.getAllDvds();
         view.displayDvdList(dvdList);
+    }
+    
+    // private methiod to delete the dvd and capture the returned dvd
+    private void deleteDvd() {
+        view.displayDeleteDvdBanner();
+        String title = view.getTitleChoice();
+        Dvd deletedDvd = dao.deleteDvd(title);
+        view.displayDeleteResult(deletedDvd);
     }
 
 }

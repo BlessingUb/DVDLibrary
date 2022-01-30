@@ -35,8 +35,9 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
     }
 
     @Override
-    public Dvd removeDvd(String title) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Dvd deleteDvd(String title) {
+        Dvd deletedDvd = dvds.remove(title);
+        return deletedDvd;
     }
     
 }
