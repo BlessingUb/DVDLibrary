@@ -10,6 +10,7 @@ import com.mthree.dvdlibrary.dto.Dvd;
 import com.mthree.dvdlibrary.ui.DvdLibraryView;
 import com.mthree.dvdlibrary.ui.UserIO;
 import com.mthree.dvdlibrary.ui.UserIOConsoleImpl;
+import java.util.List;
 
 /**
  *
@@ -28,7 +29,7 @@ public class DvdLibraryController {
             
             switch (menuSelection) {
                 case 1:
-                    io.print("LIST ALL DVDs");
+                    listDvds();
                     break;
                 case 2:
                     createDvd();
@@ -61,6 +62,12 @@ public class DvdLibraryController {
         Dvd newDvd = view.getNewDvdInfo();
         dao.createDvd(newDvd.getTitle(), newDvd);
         view.displayCreateSuccessBanner();
-}
+    }
+    
+    private void listDvds() {
+        view.displayDisplayAllDvdBanner();
+        List<Dvd> dvdList = dao.getAllDvds();
+        view.displayDvdList(dvdList);
+    }
 
 }

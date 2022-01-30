@@ -18,7 +18,7 @@ public class Dvd {
     private String userRating;
 // title will be read-only as it will be passed as parameter to the constructor
  // therefore no setter for the field   
-    public Dvd(String Title) {
+    public Dvd(String title) {
         this.title = title;
     }
     
@@ -30,7 +30,7 @@ public class Dvd {
         return releaseDate;
     }
 
-    public void setReleaseDate(String ReleaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 

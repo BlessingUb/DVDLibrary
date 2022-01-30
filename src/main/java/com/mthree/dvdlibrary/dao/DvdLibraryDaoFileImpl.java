@@ -5,6 +5,7 @@
 package com.mthree.dvdlibrary.dao;
 
 import com.mthree.dvdlibrary.dto.Dvd;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
 
     @Override
     public List<Dvd> getAllDvds() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new ArrayList<Dvd>(dvds.values());
     }
 
     @Override

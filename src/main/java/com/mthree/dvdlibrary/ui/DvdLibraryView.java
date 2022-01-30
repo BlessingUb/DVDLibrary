@@ -5,6 +5,7 @@
 package com.mthree.dvdlibrary.ui;
 
 import com.mthree.dvdlibrary.dto.Dvd;
+import java.util.List;
 
 /**
  *
@@ -33,6 +34,8 @@ public class DvdLibraryView {
         String directorName = io.readString("Please enter the Director's Name");
         String studio = io.readString("Please enter the Studio");
         String userRating = io.readString("Please enter any additional info");
+        
+        
         Dvd currentDvd = new Dvd(title);
         currentDvd.setReleaseDate(releaseDate);
         currentDvd.setMpaaRating(mpaaRating);
@@ -43,14 +46,33 @@ public class DvdLibraryView {
     
     }
     
+    public void displayDvdList(List<Dvd> dvdList) {
+        for (Dvd currentDvd : dvdList) {
+            String dvdInfo = String.format("%s || %s || %s || %s || %s || %s",
+                currentDvd.getTitle(),
+                currentDvd.getReleaseDate(),
+                currentDvd.getMpaaRating(),
+                currentDvd.getDirectorName(),
+                currentDvd.getStudio(),
+                currentDvd.getUserRating());
+            io.print(dvdInfo);
+        }
+        io.readString("Hit enter to continue.");
+    }
+    
     // display banner for new dvd
     public void displayCreateDvdBanner() {
-    io.print("=== Create Dvd  ===");
+    io.print("=== Create new Dvd  ===");
     }
     
     // display message for new dvd created
     public void displayCreateSuccessBanner() {
     io.readString(
             "Dvd successfully created.  Hit enter to continue");
+    }
+    
+    // display all dvds banner
+    public void displayDisplayAllDvdBanner() {
+        io.print("=== Display All DVDs ===");
     }
 }
