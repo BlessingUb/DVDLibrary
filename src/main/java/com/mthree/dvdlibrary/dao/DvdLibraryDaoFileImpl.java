@@ -4,10 +4,38 @@
  */
 package com.mthree.dvdlibrary.dao;
 
+import com.mthree.dvdlibrary.dto.Dvd;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author blessingubogu
  */
-public class DvdLibraryDaoFileImpl {
+public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
+    
+    private Map<String, Dvd> dvds = new HashMap<>();
+
+    @Override
+    public Dvd createDvd(String title, Dvd dvd) {
+        Dvd prevDvd = dvds.put(title, dvd);
+        return prevDvd;
+    }
+
+    @Override
+    public List<Dvd> getAllDvds() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Dvd getDvd(String title) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Dvd removeDvd(String title) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

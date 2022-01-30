@@ -11,22 +11,26 @@ package com.mthree.dvdlibrary.dto;
 public class Dvd {
     // dvd attribuutes
     private String title;
-    private localDate releaseDate;
+    private String releaseDate;
     private String mpaaRating;
     private String directorName;
     private String studio;
     private String userRating;
-
+// title will be read-only as it will be passed as parameter to the constructor
+ // therefore no setter for the field   
     public Dvd(String Title) {
         this.title = title;
     }
-
+    
+    public String getTitle() {
+        return title;
+    }
   
-    public localDate getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(localDate ReleaseDate) {
+    public void setReleaseDate(String ReleaseDate) {
         this.releaseDate = releaseDate;
     }
 

@@ -4,6 +4,8 @@
  */
 package com.mthree.dvdlibrary.ui;
 
+import com.mthree.dvdlibrary.dto.Dvd;
+
 /**
  *
  * @author blessingubogu
@@ -23,5 +25,32 @@ public class DvdLibraryView {
         return io.readInt("Please select from the above choices.", 1, 6);
     }
 
-     
+    //  get information to create a new dvd in the collection
+    public Dvd getNewDvdInfo() {
+        String title = io.readString("Please enter Dvd title");
+        String releaseDate = io.readString("Please enter the release date");
+        String mpaaRating = io.readString("Please enter the MPAA Rating");
+        String directorName = io.readString("Please enter the Director's Name");
+        String studio = io.readString("Please enter the Studio");
+        String userRating = io.readString("Please enter any additional info");
+        Dvd currentDvd = new Dvd(title);
+        currentDvd.setReleaseDate(releaseDate);
+        currentDvd.setMpaaRating(mpaaRating);
+        currentDvd.setDirectorName(directorName);
+        currentDvd.setStudio(studio);
+        currentDvd.setUserRating(userRating);
+        return currentDvd;
+    
+    }
+    
+    // display banner for new dvd
+    public void displayCreateDvdBanner() {
+    io.print("=== Create Dvd  ===");
+    }
+    
+    // display message for new dvd created
+    public void displayCreateSuccessBanner() {
+    io.readString(
+            "Dvd successfully created.  Hit enter to continue");
+    }
 }
