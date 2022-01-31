@@ -137,5 +137,53 @@ public class DvdLibraryView {
         io.print("=== ERROR ===");
         io.print(errorMsg);
     }
+
+    public void displayEditReleaseDateBanner() {
+        io.print("=== Edit DVD Release Date ===");
+    }
+
+    public void displayEditResult() {
+        io.print("DVD Successfully edited.");
+    } 
+    
+    public String getReleaseDate() {
+        return io.readString("Enter the new DVD release date.");
+    }
+
+    public String getMpaaRating() {
+        return io.readString("Enter the new DVD MPAA rating.");
+    }
+
+    public String getDirectorName() {
+        return io.readString("Enter the new director's name.");
+    }
+    
+    public String getStudioName() {
+        return io.readString("Enter the studio name.");
+    }
+    
+    public String getUserRating() {
+        return io.readString("Enter the new user rating.");
+    }
+
+    public int printEditMenuAndGetSelection() {
+        io.print("Which field do you want to change?");
+        io.print("Edit DVD menu");
+        io.print("1. Release date");
+        io.print("2. MPAA rating");
+        io.print("3. Director's name");
+        io.print("4. User rating");
+        io.print("5. Studio name");
+        io.print("6. Exit edit menu");
+        return io.readInt("Please select from the above choices.", 1,6);
+    }
+
+    public void displayNullDvd() {
+        io.print("No such DVD");
+    }
+
+    public void displayEditDvdBanner() {
+        io.print("=== Edit DVD Release Date ===");
+    }
 }
 

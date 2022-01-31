@@ -25,6 +25,7 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
     public static final String LIBRARY_FILE = "library.txt";
     public static final String DELIMITER = "::";
     
+    
     private Map<String, Dvd> dvds = new HashMap<>();
 
     /**
@@ -66,46 +67,52 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
         return deletedDvd;
     }
     
-    // able to edit an exisiting dvd
-//    @Override
-//    public Dvd editDvd(String title) {
-//        Dvd editedDvd = dvds.put(title);
-//        return editedDvd;
-//    }
-//    
-    private void loadLibrary() throws DvdLibraryDaoException {
-    Scanner scanner;
+    @Override
+    public Dvd changeReleaseDate(String title, String releaseDate)
+      throws DvdLibraryDaoException {
+        loadLibrary();
+        Dvd dvdToEdit = dvds.get(title);
+        dvdToEdit.setReleaseDate(releaseDate);
+        writeLibrary();
+        return dvdToEdit;
+    }
 
-    try {
-        // Create Scanner for reading the file
-        scanner = new Scanner(
-                new BufferedReader(
-                        new FileReader(LIBRARY_FILE)));
-    } catch (FileNotFoundException e) {
-        throw new DvdLibraryDaoException(
-                "-_- Could not load roster data into memory.", e);
+    @Override
+    public Dvd changeMpaaRating(String title, String mpaaRating) 
+      throws DvdLibraryDaoException {
+        loadLibrary();
+        Dvd dvdToEdit = dvds.get(title);
+        dvdToEdit.setMpaaRating(mpaaRating);
+        writeLibrary();
+        return dvdToEdit;
     }
-    // currentLine holds the most recent line read from the file
-    String currentLine;
-    // currentDvd holds the most recent dvd unmarshalled
-    Dvd currentDvd;
-    // Go through LIBRARY_FILE line by line, decoding each line into a 
-    // Dvd object by calling the unmarshallDvd method.
-    // Process while we have more lines in the file
-    while (scanner.hasNextLine()) {
-        // get the next line in the file
-        currentLine = scanner.nextLine();
-        // unmarshall the line into a Dvd
-        currentDvd = unmarshallDvd(currentLine);
 
-        //use the dvd title as the map key for our dvd object.
-        // Put currentDvd into the map using title as the key
-        dvds.put(currentDvd.getTitle(), currentDvd());
+    @Override
+    public Dvd changeDirectorName(String title, String directorName) throws DvdLibraryDaoException {
+        loadLibrary();
+        Dvd dvdToEdit = dvds.get(title);
+        dvdToEdit.setDirectorName(directorName);
+        writeLibrary();
+        return dvdToEdit;
     }
-    // close scanner
-    scanner.close();
+
+    @Override
+    public Dvd changeUserRating(String title, String userRating)throws DvdLibraryDaoException {
+        loadLibrary();
+        Dvd dvdToEdit = dvds.get(title);
+        dvdToEdit.setUserRating(userRating);
+        writeLibrary();
+        return dvdToEdit;
     }
-    
+
+    @Override
+    public Dvd changeStudioName(String title, String studioName) throws DvdLibraryDaoException {
+        loadLibrary();
+        Dvd dvdToEdit = dvds.get(title);
+        dvdToEdit.setStudio(studioName);
+        writeLibrary();
+        return dvdToEdit;
+    }
     
     private String marshallDvd(Dvd aDvd){
     // turn a Dvd object into a line of text for our file.
@@ -136,6 +143,34 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
     return dvdAsText;
     }
     
+    private Dvd unmarshallDvd(String dvdAsText) {
+        //dvdAsText is expecting a line read in from our file.
+        
+        //This line is then split at the DELIMITER (::), 
+        //leaving an array of Strings,
+        //stored as dvdTokens, which should look like this:
+        
+        String [] dvdTokens = dvdAsText.split(DELIMITER);
+        //DVD title is in index 0 of the array.
+        String title = dvdTokens[0];
+        String releaseDate = dvdTokens[1];
+        String mpaaRating = dvdTokens[2];
+        String directorName = dvdTokens[3];
+        String studio = dvdTokens[4];
+        String userRating = dvdTokens[5];
+        
+
+        //A new DVD object is created using the title to satisfy the 
+        //requirements of the DVD constructor
+        Dvd dvdFromFile = new Dvd(title);
+        //The remaining tokens are then set into the DVD object using the appropriate setters.
+        dvdFromFile.setReleaseDate(releaseDate);
+        dvdFromFile.setMpaaRating(mpaaRating);
+        dvdFromFile.setDirectorName(directorName);
+        dvdFromFile.setStudio(studio);
+        dvdFromFile.setUserRating(userRating);
+        return dvdFromFile;
+    }
     /**
  * Writes all dvds in the library out to a LIBRARY_FILE.  See loadLibrary
  * for file format.
@@ -171,7 +206,39 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
     out.close();
     }
 
-    private Dvd unmarshallDvd(String currentLine) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
+    private void loadLibrary() throws DvdLibraryDaoException {
+    Scanner scanner;
+
+    try {
+        // Create Scanner for reading the file
+        scanner = new Scanner(
+                new BufferedReader(
+                        new FileReader(LIBRARY_FILE)));
+    } catch (FileNotFoundException e) {
+        throw new DvdLibraryDaoException(
+                "-_- Could not load library data into memory.", e);
     }
+    // currentLine holds the most recent line read from the file
+    String currentLine;
+    // currentDvd holds the most recent dvd unmarshalled
+    Dvd currentDvd;
+    // Go through LIBRARY_FILE line by line, decoding each line into a 
+    // Dvd object by calling the unmarshallDvd method.
+    // Process while we have more lines in the file
+    while (scanner.hasNextLine()) {
+        // get the next line in the file
+        currentLine = scanner.nextLine();
+        // unmarshall the line into a Dvd
+        currentDvd = unmarshallDvd(currentLine);
+
+        //use the dvd title as the map key for our dvd object.
+        // Put currentDvd into the map using title as the key
+        dvds.put(currentDvd.getTitle(), currentDvd);
+    }
+    // close scanner
+    scanner.close();
+    }
+
+
 }

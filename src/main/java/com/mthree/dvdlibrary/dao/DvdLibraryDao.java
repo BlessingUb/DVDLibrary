@@ -58,4 +58,39 @@ public interface DvdLibraryDao {
      */
     Dvd deleteDvd(String title)
       throws DvdLibraryDaoException;
+    
+    /**
+     * Edits the DVD release date from the library the DVD associated 
+     * with the given title.Returns the DVD object that is being edited 
+     * or null if there is no DVD
+     *  associated with the given title.
+     * @param title title of DVD to be edited
+     * @param releaseDate release date of DVD to be changed to
+     * @return Dvd object that was edited or null if no DVD was associated with the 
+     * given DVD title
+     * @throws com.chloe.dvdlibrary.dao.DvdLibraryDaoException
+     */
+    
+    Dvd changeReleaseDate(String title, String releaseDate)
+      throws DvdLibraryDaoException;
+
+
+    Dvd changeMpaaRating(String title, String mpaaRating)
+      throws DvdLibraryDaoException;
+
+   
+    Dvd changeDirectorName(String title, String directorName)
+      throws DvdLibraryDaoException;
+
+    
+    Dvd changeStudioName(String title, String studioName)
+      throws DvdLibraryDaoException;
+     
+     
+    Dvd changeUserRating(String title, String userRating)
+      throws DvdLibraryDaoException;
+
+   
+       
+
 }
