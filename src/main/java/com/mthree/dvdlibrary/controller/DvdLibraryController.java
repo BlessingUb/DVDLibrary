@@ -5,6 +5,7 @@
 package com.mthree.dvdlibrary.controller;
 
 import com.mthree.dvdlibrary.dao.DvdLibraryDao;
+import com.mthree.dvdlibrary.dao.DvdLibraryDaoException;
 import com.mthree.dvdlibrary.dao.DvdLibraryDaoFileImpl;
 import com.mthree.dvdlibrary.dto.Dvd;
 import com.mthree.dvdlibrary.ui.DvdLibraryView;
@@ -39,51 +40,55 @@ public class DvdLibraryController {
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
-        while (keepGoing) {
-            menuSelection = getMenuSelection();
+        try {
+            while (keepGoing) {
+                menuSelection = getMenuSelection();
             
-            switch (menuSelection) {
-                case 1:
-                    listDvds();
-                    break;
-                case 2:
-                    createDvd();
-                    break;
-                case 3:
-                    deleteDvd();
-                    break;
-                case 5:
-                    viewDvdInfo();
-                    break;
-                case 6:
-                    keepGoing = false;
-                    break;
-                default:
-                    invalidCommand();
-            }
+                switch (menuSelection) {
+                    case 1:
+                        listDvds();
+                        break;
+                    case 2:
+                        createDvd();
+                        break;
+                    case 3:
+                        deleteDvd();
+                        break;
+                    case 5:
+                        viewDvdInfo();
+                        break;
+                    case 6:
+                        keepGoing = false;
+                        break;
+                    default:
+                        invalidCommand();
+                }
 
+            }
+            exitMessage();
+        } catch (DvdLibraryDaoException e) {
+        view.displayErrorMessage(e.getMessage());
         }
-        exitMessage();
     }
     private int getMenuSelection(){
         return view.printMenuAndGetSelection();
     }
-    
-    private void createDvd() {
+
+    private void createDvd() throws DvdLibraryDaoException{
         view.displayCreateDvdBanner();
         Dvd newDvd = view.getNewDvdInfo();
         dao.createDvd(newDvd.getTitle(), newDvd);
         view.displayCreateSuccessBanner();
     }
     
-    private void listDvds() {
+    private void listDvds() throws DvdLibraryDaoException{
         view.displayDisplayAllDvdBanner();
         List<Dvd> dvdList = dao.getAllDvds();
         view.displayDvdList(dvdList);
     }
     
     // private methiod to delete the dvd and capture the returned dvd
-    private void deleteDvd() {
+    private void deleteDvd() throws DvdLibraryDaoException{
         view.displayDeleteDvdBanner();
         String title = view.getTitleChoice();
         Dvd deletedDvd = dao.deleteDvd(title);
@@ -93,7 +98,7 @@ public class DvdLibraryController {
     
     //private method asks the view to display the View Dvd banner and get 
     //the title from the user
-    private void viewDvdInfo() {
+    private void viewDvdInfo() throws DvdLibraryDaoException{
         view.displayDisplayDvdBanner();
         String title = view.getTitleChoice();
         Dvd dvd = dao.getDvd(title);

@@ -132,5 +132,10 @@ public class DvdLibraryView {
     public void displayInvalidCommandBanner() {
         io.print("Invalid Command!!!");
     }
+    
+    public void displayErrorMessage(String errorMsg) {
+        io.print("=== ERROR ===");
+        io.print(errorMsg);
+    }
 }
 

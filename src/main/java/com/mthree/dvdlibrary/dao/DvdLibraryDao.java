@@ -24,14 +24,16 @@ public interface DvdLibraryDao {
      * dvd title if it exist, null otherwise
      */
     
-    Dvd createDvd(String title, Dvd dvd);
+    Dvd createDvd(String title, Dvd dvd)
+      throws DvdLibraryDaoException;
     
     /**
      * Returns a List of all dvds in the Library.
      *
      * @return List containing all dvds in the library.
      */
-    List<Dvd> getAllDvds();
+    List<Dvd> getAllDvds()
+     throws DvdLibraryDaoException;
     
     
     /**
@@ -42,7 +44,8 @@ public interface DvdLibraryDao {
      * @return the Dvd object associated with the given dvd title,  
      * null if no such dvd exists
      */
-    Dvd getDvd(String title);
+    Dvd getDvd(String title)
+       throws DvdLibraryDaoException;
 
     /**
      * Deletes from the Library the dvd associated with the given id.
@@ -53,5 +56,6 @@ public interface DvdLibraryDao {
      * @return Dvd object that was deleted or null if no dvd
      * was associated with the given dvd title
      */
-    Dvd deleteDvd(String title);
+    Dvd deleteDvd(String title)
+      throws DvdLibraryDaoException;
 }
