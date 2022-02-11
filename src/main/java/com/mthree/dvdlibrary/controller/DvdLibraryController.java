@@ -167,25 +167,29 @@ public class DvdLibraryController {
         view.displayEditResult();
     }
     private void editMpaaRating(String title) throws DvdLibraryDaoException {
-        //view.displayEditMpaaRatingBanner();
+        view.displayEditMpaaRatingBanner();
         String newMpaaRating = view.getMpaaRating();
         Dvd editedDvd = dao.changeMpaaRating(title, newMpaaRating);
         view.displayEditResult();
     }
     private void editDirectorName(String title) throws DvdLibraryDaoException {
-        //view.displayEditDirectorNameBanner();
+        view.displayEditDirectorNameBanner();
         String newDirectorName = view.getDirectorName();
         Dvd editedDvd = dao.changeDirectorName(title, newDirectorName);
         view.displayEditResult();
     }
-    private void editUserRating(String title) throws DvdLibraryDaoException {
-        String newUserRating = view.getUserRating();
-        Dvd editedDvd = dao.changeUserRating(title, newUserRating);
-        view.displayEditResult();
-    }
-    private void editStudioName(String title) throws DvdLibraryDaoException {
+     private void editStudioName(String title) throws DvdLibraryDaoException {
+        view.displayEditStudioBanner();
         String newStudioName = view.getStudioName();
         Dvd editedDvd = dao.changeStudioName(title, newStudioName);
         view.displayEditResult();
     }
+     
+    private void editUserRating(String title) throws DvdLibraryDaoException {
+        view.displayEditUserRatingBanner();
+        String newUserRating = view.getUserRating();
+        Dvd editedDvd = dao.changeUserRating(title, newUserRating);
+        view.displayEditResult();
+    }
+   
 }

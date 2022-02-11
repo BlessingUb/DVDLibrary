@@ -153,22 +153,22 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
         String [] dvdTokens = dvdAsText.split(DELIMITER);
         //DVD title is in index 0 of the array.
         String title = dvdTokens[0];
-        String releaseDate = dvdTokens[1];
-        String mpaaRating = dvdTokens[2];
-        String directorName = dvdTokens[3];
-        String studio = dvdTokens[4];
-        String userRating = dvdTokens[5];
+//        String releaseDate = dvdTokens[1];
+//        String mpaaRating = dvdTokens[2];
+//        String directorName = dvdTokens[3];
+//        String studio = dvdTokens[4];
+//        String userRating = dvdTokens[5];
         
 
         //A new DVD object is created using the title to satisfy the 
         //requirements of the DVD constructor
         Dvd dvdFromFile = new Dvd(title);
         //The remaining tokens are then set into the DVD object using the appropriate setters.
-        dvdFromFile.setReleaseDate(releaseDate);
-        dvdFromFile.setMpaaRating(mpaaRating);
-        dvdFromFile.setDirectorName(directorName);
-        dvdFromFile.setStudio(studio);
-        dvdFromFile.setUserRating(userRating);
+        dvdFromFile.setReleaseDate(dvdTokens[1]);
+        dvdFromFile.setMpaaRating(dvdTokens[2]);
+        dvdFromFile.setDirectorName(dvdTokens[3]);
+        dvdFromFile.setStudio(dvdTokens[4]);
+        dvdFromFile.setUserRating(dvdTokens[5]);
         return dvdFromFile;
     }
     /**
