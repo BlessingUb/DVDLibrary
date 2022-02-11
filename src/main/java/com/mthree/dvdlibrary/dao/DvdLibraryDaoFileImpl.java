@@ -162,6 +162,7 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
 
         //A new DVD object is created using the title to satisfy the 
         //requirements of the DVD constructor
+        
         Dvd dvdFromFile = new Dvd(title);
         //The remaining tokens are then set into the DVD object using the appropriate setters.
         dvdFromFile.setReleaseDate(dvdTokens[1]);
@@ -229,6 +230,7 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
     while (scanner.hasNextLine()) {
         // get the next line in the file
         currentLine = scanner.nextLine();
+        if (currentLine.isEmpty()) break;
         // unmarshall the line into a Dvd
         currentDvd = unmarshallDvd(currentLine);
 
